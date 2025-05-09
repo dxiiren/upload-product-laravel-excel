@@ -1,0 +1,22 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+#import user.graphql
+#import product.graphql
+
+type Query {
+    user(id: ID @eq): User @find
+
+    users(
+      where: _ @whereConditions(columnsEnum: "UserColumn")
+      orderBy: _ @orderBy(columnsEnum: "UserColumn")
+    ): [User!]! @paginate(defaultCount: 10)
+
+    product(id: ID @eq): Product @find
+
+    products(
+      where: _ @whereConditions(columnsEnum: "ProductColumn")
+      orderBy: _ @orderBy(columnsEnum: "ProductColumn")
+      filter: ProductFilterInput @scope(name: "filter")
+    ): [Product!]! @paginate(defaultCount: 10) 
+}

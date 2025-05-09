@@ -1,0 +1,25 @@
+type Product {
+    id: Int!
+    type: String!
+    brand: String!
+    model: String!
+    capacity: String!
+    quantity: Int!
+    created_at: DateTime
+    updated_at: DateTime
+}
+
+enum ProductColumn {
+    id @enum(value: "id")
+    type @enum(value: "type")
+    brand @enum(value: "brand")
+    model @enum(value: "model")
+    capacity @enum(value: "capacity")
+    quantity @enum(value: "quantity")
+    created_at @enum(value: "created_at")
+    updated_at @enum(value: "updated_at")
+}
+
+input ProductFilterInput {
+  search: String
+}
